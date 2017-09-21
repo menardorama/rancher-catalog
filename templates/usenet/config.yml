@@ -1,0 +1,5 @@
+name: Usenet All in One (sabnzbd, couchpotato, sickrage, radarr, sonarr)
+description: |
+  Movies and Tv Shows usenet downloading tools
+version: v0.1.0
+category: Usenet
