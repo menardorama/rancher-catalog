@@ -1,4 +1,8 @@
 name: Usenet All in One
-description: "Movies and Tv Shows usenet downloading tools  (sabnzbd, couchpotato, sickrage, radarr, sonarr)"
+description: |
+  Movies and Tv Shows usenet downloading tools  (sabnzbd, couchpotato, sickrage, radarr, sonarr)
 version: v0.1.0
 category: Applications
+maintainer: Menardorama
+license: GPL
+projectURL: https://github.com/menardorama/rancher-catalog/tree/master/templates/usenet
