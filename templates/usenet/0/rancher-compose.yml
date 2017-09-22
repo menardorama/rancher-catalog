@@ -4,7 +4,6 @@ catalog:
     version: "v1.0.0-rancher1"
     description: "Movies and Tv Shows usenet downloading tools (sabnzbd, couchpotato, sickrage, radarr, sonarr)"
     minimum_rancher_version: v0.44.0
-    maximum_rancher_version: v1.2.0-pre3
     questions:
         - variable: "TARGER_NFS"
         label: "Target NFS Server"
