@@ -1,5 +1,4 @@
-version: '2'
-catalog:
+.catalog:
     name: Usenet AllInOne
     version: "v1.0.0-rancher1"
     description: "Movies and Tv Shows usenet downloading tools (sabnzbd, couchpotato, sickrage, radarr, sonarr)"
