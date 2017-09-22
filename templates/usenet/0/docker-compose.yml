@@ -3,99 +3,87 @@ volumes:
   movies:
     driver: rancher-nfs
     driver_opts:
-      host: 192.168.1.3
-      export: /data/Videos/films
+      host: ${TARGET_NFS}
+      export: ${MOVIE_SHARE}
       onRemove: retain
   series:
     driver: rancher-nfs
     driver_opts:
-      host: 192.168.1.3
-      export: /data/Videos/Series
-      onRemove: retain
-  music:
-    driver: rancher-nfs
-    driver_opts:
-      host: 192.168.1.3
-      export: /data/Music
+      host: ${TARGET_NFS}
+      export: ${TV_SHARE}
       onRemove: retain
   sabnzbd_config:
     driver: rancher-nfs
     driver_opts:
-      host: 192.168.1.23
-      export: /apps/sabnzbd
+      host: ${APP_NFS}
+      export: ${APP_ROOT_DIR}/sabnzbd
       onRemove: retain
   sabnzbd_complete:
     driver: rancher-nfs
     driver_opts:
-      host: 192.168.1.23
-      export: /download/complete
+      host: ${APP_NFS}
+      export: ${SABNZBD_COMPLETE_DIR}
       onRemove: retain
   sabnzbd_incomplete:
     driver: rancher-nfs
     driver_opts:
-      host: 192.168.1.23
-      export: /download/incomplete
+      host: ${APP_NFS}
+      export: ${SABNZBD_INCOMPLETE_DIR}
       onRemove: retain
   couchpotato_config:
     driver: rancher-nfs
     driver_opts:
-      host: 192.168.1.23
-      export: /apps/couchpotato
+      host: ${APP_NFS}
+      export: ${APP_ROOT_DIR}/couchpotato
       onRemove: retain
   couchpotato_download:
     driver: rancher-nfs
     driver_opts:
-      host: 192.168.1.23
-      export: /download/complete/movies
+      host: ${APP_NFS}
+      export: ${SABNZBD_COMPLETE_DIR}/movies
       onRemove: retain
   sickrage_config:
     driver: rancher-nfs
     driver_opts:
-      host: 192.168.1.23
-      export: /apps/sickrage
+      host: ${APP_NFS}
+      export: ${APP_ROOT_DIR}/sickrage
       onRemove: retain
   sickrage_download:
     driver: rancher-nfs
     driver_opts:
-      host: 192.168.1.23
-      export: /download/complete/tv
+      host: ${APP_NFS}
+      export: ${SABNZBD_COMPLETE_DIR}/tv
       onRemove: retain
   radarr_config:
     driver: rancher-nfs
     driver_opts:
-      host: 192.168.1.23
-      export: /apps/radarr
+      host: ${APP_NFS}
+      export: ${APP_ROOT_DIR}/radarr
       onRemove: retain
   radarr_download:
     driver: rancher-nfs
     driver_opts:
-      host: 192.168.1.23
-      export: /download/complete/movies_radarr
+      host: ${APP_NFS}
+      export: ${SABNZBD_COMPLETE_DIR}/movies_radarr
       onRemove: retain
   sonarr_config:
     driver: rancher-nfs
     driver_opts:
-      host: 192.168.1.23
-      export: /apps/sonarr
+      host: ${APP_NFS}
+      export: ${APP_ROOT_DIR}/sonarr
       onRemove: retain
   sonarr_download:
     driver: rancher-nfs
     driver_opts:
-      host: 192.168.1.23
-      export: /download/complete/tv_sonarr
-      onRemove: retain
-  plex_config:
-    driver: rancher-nfs
-    driver_opts:
-      host: 192.168.1.23
-      export: /apps/plex
+      host: ${APP_NFS}
+      export: ${SABNZBD_COMPLETE_DIR}/tv_sonarr
       onRemove: retain
 
 services:
     couchpotato:
         image: linuxserver/couchpotato:latest
         ports:
-            - 5000:5000/tcp
+            - ${COUCHPOTATO_PORT}:${COUCHPOTATO_PORT}/tcp
         environment:
             PUID: 1001
             GUID: 1001
@@ -110,14 +98,14 @@ services:
     sickrage:
         image: linuxserver/sickrage:latest
         ports:
-            - 5001:5001/tcp
+            - ${SICKRAGE_PORT}:${SICKRAGE_PORT}/tcp
         environment:
             PUID: 1001
             GUID: 1001
             TZ: Europe/Paris
         volumes:
             - sickrage_config:/config
-            - movies:/movies
+            - series:/tv
             - sickrage_download:/downloads
         labels:
             io.rancher.container.agent.role: environmentAdmin
@@ -125,14 +113,14 @@ services:
     sonarr:
         image: linuxserver/sonarr:latest
         ports:
-            - 5002:5002/tcp
+            - ${SONARR_PORT}:${SONARR_PORT}/tcp
         environment:
             PUID: 1001
             GUID: 1001
             TZ: Europe/Paris
         volumes:
             - sonarr_config:/config
-            - movies:/movies
+            - series:/tv
             - sonarr_download:/downloads
         labels:
             io.rancher.container.agent.role: environmentAdmin
@@ -140,7 +128,7 @@ services:
     radarr:
         image: linuxserver/radarr:latest
         ports:
-            - 5003:5003/tcp
+            - ${RADARR_PORT}:${RADARR_PORT}/tcp
         environment:
             PUID: 1001
             GUID: 1001
@@ -155,7 +143,7 @@ services:
     sabnzbd:
         image: linuxserver/sabnzbd:latest
         ports:
-            - 5004:8080/tcp
+            - ${SABNZBD_PORT}:8080/tcp
         environment:
             PUID: 1001
             GUID: 1001
