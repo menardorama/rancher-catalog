@@ -2,72 +2,71 @@
     name: Usenet AllInOne
     version: "v1.0.0-rancher1"
     description: "Movies and Tv Shows usenet downloading tools (sabnzbd, couchpotato, sickrage, radarr, sonarr)"
-    minimum_rancher_version: v1.1.0
     questions:
-        - variable: "TARGER_NFS"
+        - variable: TARGER_NFS
             label: "Target NFS Server"
             description: "NFS Server used to store the downloaded datas"
-            type: "string"
+            type: string
             required: true
-        - variable: "MOVIE_SHARE"
+        - variable: MOVIE_SHARE
             label: "Movie share"
             description: "Movie share on the target NFS Server"
-            type: "string"
+            type: string
             required: true
-        - variable: "TV_SHARE"
+        - variable: TV_SHARE
             label: "TV shows share"
             description: "TV show share on the target NFS Server"
-            type: "string"
+            type: string
             required: true
-        - variable: "APP_NFS"
+        - variable: APP_NFS
             label: "NFS Server used to store config"
             description: "NFS Server used to store config of the installed apps"
-            type: "string"
+            type: string
             required: true
-        - variable: "APP_ROOT_DIR"
+        - variable: APP_ROOT_DIR
             label: "NFS root directory for apps"
             description: "NFS root directory of the installed apps"
-            type: "string"
+            type: string
             required: true
-        - variable: "SABNZBD_COMPLETE_DIR"
+        - variable: SABNZBD_COMPLETE_DIR
             label: "SABNZBD complete directory"
             description: "SABNZBD complete directory"
-            type: "string"
+            type: string
             required: true
-        - variable: "SABNZBD_INCOMPLETE_DIR"
+        - variable: SABNZBD_INCOMPLETE_DIR
             label: "SABNZBD incomplete directory"
             description: "SABNZBD incomplete directory"
-            type: "string"
+            type: string
             required: true
-        - variable: "COUCHPOTATO_PORT"
+        - variable: COUCHPOTATO_PORT
             label: "Couchpotato port"
             description: "Couchpotato listenning port"
             default: 5000
-            type: "int"
+            type: int
             required: true
-        - variable: "SICKRAGE_PORT"
+        - variable: SICKRAGE_PORT
             label: "Sickrage port"
             description: "Sickrage listenning port"
             default: 5001
-            type: "int"
+            type: int
             required: true
-        - variable: "SONARR_PORT"
+        - variable: SONARR_PORT
             label: "Sonarr port"
             description: "Sonarr listenning port"
             default: 5002
-            type: "int"
+            type: int
             required: true
-        - variable: "RADARR_PORT"
+        - variable: RADARR_PORT
             label: "Radarr port"
             description: "Radarr listenning port"
             default: 5003
-            type: "int"
+            type: int
             required: true
-        - variable: "SABNZBD_PORT"
+        - variable: SABNZBD_PORT
             label: "Sabnzbd port"
             description: "Sabnzbd listenning port"
             default: 5004
-            type: "int"
+            type: int
             required: true
 
     couchpotato:
